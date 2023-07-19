@@ -1,0 +1,10 @@
+<template>
+  <div class="slds-grid slds-gutters slds-grid_align-spread slds-grid_vertical-align-center picker">
+    <div class="slds-col">
+      <lightning-input type="date" date-style="short" label="Date from" min={minDate} max={maxDate} message-when-range-underflow="Please select a later date" onchange={handleFromDateChange} class="picker"></lightning-input>
+    </div>
+    <div class="slds-col">
+      <lightning-input type="date" date-style="short" label="Date to" min={minDate} max={maxDate} message-when-range-overflow="Please select a date prior" onchange={handleToDateChange} class="picker"></lightning-input>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,30 @@
+.spinner{
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+.task-title{
+    vertical-align: middle;
+    font-size: larger;
+    margin-top: 10px;
+}
+
+.card-icon{
+    margin-right: 10px;
+}
+
+.container{
+    font-size: small;
+    display: flex;
+    justify-content: space-between;
+}
+
+.picker{
+    max-width: 80%;
+}
+
+.picker-container{
+    justify-content: space-between;
+}

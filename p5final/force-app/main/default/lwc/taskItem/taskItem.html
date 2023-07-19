@@ -1,0 +1,43 @@
+<template>
+    <!-- lightning item for task -->
+    <lightning-layout-item padding="around-small" size="12" small-device-size="6" medium-device-size="4" large-device-size="3">
+        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center container">
+            <div class="slds-col slds-size_3-of-12 slds-align_absolute-center name">
+                <p>{task.Name}</p>
+            </div>
+            <div class="slds-col slds-size_2-of-12 slds-align_absolute-center status">
+                <p>{task.Status__c}</p>
+            </div>
+            <div class="slds-col slds-size_1-of-12 slds-align_absolute-center hours">
+                <p>{task.Assigned_Hours__c}</p>
+            </div>
+            <div class="slds-col slds-size_1-of-12 slds-align_absolute-center worked-hours">
+                <p>{task.Worked_Hours__c}</p>
+            </div>
+            <div class="slds-col slds-size_5-of-12 buttons">
+
+                <!-- Use template if:false to check task status -->
+                <template if:false={beginTask}>
+                    <lightning-button variant="brand" label="Begin Task" title="Primary action" onclick={handleClick} class="slds-align_absolute-center begin slds-visible"></lightning-button>
+                </template>
+
+                <!-- Use template if:true to check task status -->
+                <template if:true={beginTask}>
+                    <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-align_absolute-center slds-visible button-container">
+                        <div class="slds-col slds-size_2-of-12">
+                            <lightning-input type="number" task-value={task.Id} variant="label-hidden" onchange={handleHours}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_4-of-12">
+                            <lightning-button variant="brand-outline" label="Submit" title="Primary action" onclick={handleSubmit} class="slds-m-left_x-small"></lightning-button>
+                        </div>
+                        <div class="slds-col slds-size_4-of-12">
+                            <lightning-button variant="brand-outline" label="Completed" title="Primary action" onclick={handleCompleted} class="slds-m-left_x-small"></lightning-button>
+                        </div>
+                    </div>
+                </template>
+
+            </div> 
+
+        </div>
+    </lightning-layout-item>
+</template>

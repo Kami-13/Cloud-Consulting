@@ -1,0 +1,33 @@
+<template>
+    <!-- lightning item for each user -->
+    <lightning-layout-item padding="around-small" size="12" small-device-size="6" medium-device-size="4" large-device-size="3">
+        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center container">
+            <div class="slds-col slds-size_4-of-12 rate">
+                <div class="slds-grid slds-grid_vertical-align-center resource">
+                    <div class="slds-col slds-size_1-of-12 checkbox">
+                        <lightning-input class="slds-align-middle clearClass" type="checkbox" user-value={user.Id} onchange={handleCheckboxChange}></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_11-of-12 name">
+                        <p>{user.Name}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-12 rate">
+                <p>$ {user.Rate_Hourly__c} p/hour</p>
+            </div>
+            <div class="slds-col slds-size_5-of-12 picker-container">
+                <div class="slds-grid slds-grid_align-space slds-grid_vertical-align-center">
+                    <div class="slds-col slds-size_5-of-12 picker">
+                        <lightning-input type="date" date-style="short" label="Date From" min={minDate} max={maxDate} disabled-dates={disabledDates} custom-error={minErrorMessage} onchange={handleFrom} class="min picker clearClass" title="Please click the checkbox to enable this field" disabled={checkTrue}></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_5-of-12 picker">
+                        <lightning-input type="date" date-style="short" label="Date To" min={minDate} max={maxDate} disabled-dates={disabledDates} custom-error={maxErrorMessage} onchange={handleTo} class="max picker clearClass" title="Please click the checkbox to enable this field" disabled={checkTrue}></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-12 toolip">
+                        <c-pop-up dates={userDates} user={user.Id}></c-pop-up>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning-layout-item>
+</template>

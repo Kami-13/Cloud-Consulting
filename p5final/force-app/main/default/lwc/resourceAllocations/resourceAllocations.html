@@ -1,0 +1,40 @@
+<template>
+
+    <!-- Use template if:true to display/hide spinner -->
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
+    </template>
+
+    <!-- Use template if:true to check project's status -->
+    <template if:true={preKickoff}>
+
+    <!-- Resource title -->
+    <lightning-card>
+        <h3 class="allocation-title" slot="title">
+            <lightning-icon icon-name="standard:contact_list" size="medium" class="card-icon"></lightning-icon>
+            Resource Allocations
+        </h3>
+
+        <!-- Use template if:true to check project's resources availability -->
+        <template if:true={resources}>
+
+            <!-- Use template for:each to load child components for resources -->
+            <template for:each={resources} for:item="role">
+                <c-resource-card key={role.role} role={role.role} users={role.users} total-hours={role.total} assigned-hours={role.hours} related-project={project} user-dates={userDates} onusertosendchange={handleUserToSendChange} ondeleteuser={handleUserToDelete}></c-resource-card>
+            </template>
+        </template>
+
+        <!-- Submit button -->
+        <div slot="footer">
+            <lightning-button variant="brand" label="Assign" title="Assign" icon-name="utility:add" class="slds-m-left_x-small" onclick={handleSubmit}></lightning-button>
+        </div>
+      </lightning-card>
+
+    </template>
+
+    <!-- Use template if:true to check project's status -->
+    <template if:true={notKickoff}>
+        <c-cactus-image></c-cactus-image>
+    </template>
+
+</template>

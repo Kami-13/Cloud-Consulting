@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>ResourceMessageChannel</masterLabel>
+    <isExposed>true</isExposed>
+    <description>Message channel for Grandparent to Grandchild component communication.</description>
+    <lightningMessageFields>
+        <fieldName>clearInputs</fieldName>
+        <description>Indicates whether to clear the inputs in the grandchild component</description>
+    </lightningMessageFields>
+</LightningMessageChannel>

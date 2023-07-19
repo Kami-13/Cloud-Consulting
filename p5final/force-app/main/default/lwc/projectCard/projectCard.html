@@ -1,0 +1,42 @@
+<template>
+    <!-- lightning card for project -->
+    <lightning-card class="card">
+        <div class="card-title">
+            <h3 slot="title">
+                {project} - {tasks.length} pending tasks
+            </h3>
+        </div>
+
+        <div style="height: auto">
+            <!-- Use template if:true to display/hide project's tasks -->
+            <template if:true={tasks}>
+
+                <!-- Tasks' headers -->
+                <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-m-top_small container">
+                    <div class="slds-col slds-size_3-of-12 name">
+                        <p>Task</p>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12 status">
+                        <p>Status</p>
+                    </div>
+                    <div class="slds-col slds-size_1-of-12 hours">
+                        <p>Estimated Hours</p>
+                    </div>
+                    <div class="slds-col slds-size_1-of-12 worked-hours">
+                        <p>Worked Hours</p>
+                    </div>
+                    <div class="slds-col slds-size_5-of-12 begin">
+                        <p>Actions</p>
+                    </div>
+
+                </div>
+                <div class="slds-border_bottom resource-border slds-m-vertical_x-small"></div>
+
+                <!-- Use template for:each to load child components for tasks -->
+                <template for:each={tasks} for:item="task">
+                    <c-task-item key={task} task={task}></c-task-item>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

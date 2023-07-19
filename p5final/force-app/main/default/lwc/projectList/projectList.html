@@ -1,0 +1,102 @@
+<template>
+    <lightning-card>
+
+        <!-- Component's refresh button -->
+        <lightning-button-icon icon-name="utility:refresh" size="small" slot="actions" onclick={handleRefresh} class="toolip" variant="bare"></lightning-button-icon>
+
+        <!-- Use template if:true to check user's role and display list accordingly -->
+        <template if:true={PM}>
+
+            <h3 class="task-title slds-grid_vertical-align-center" slot="title">
+                <lightning-icon icon-name="standard:contact_list" size="medium" class="card-icon"></lightning-icon>
+                My Project Manager Projects
+            </h3>
+
+            <!-- Use template for:each to load PM's projects -->
+            <template for:each={projectManager} for:item="project">
+
+                <div class="slds-grid slds-grid_align-space slds-grid_vertical-align-center container" key={project}>
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_12-of-12 name">
+                            <a onclick={handleProjectClick} data-project-id={project.Id}>{project.Name}</a>
+                        </div>
+                        <div class="slds-col slds-grid slds-size_12-of-12">
+                            <div class="slds-col slds-size_6-of-12 status">
+                                <div class="lgc-bg">
+                                    <lightning-input type="text" label="Status" value={project.Status__c} readonly></lightning-input>
+                                </div>
+                            </div>
+                            <template if:true={project.Squad_Lead__r}>
+                                <div class="slds-col slds-size_6-of-12 squad">
+                                    <div class="lgc-bg">
+                                        <lightning-input type="text" label="Squad Lead" value={project.Squad_Lead__r.Name} readonly></lightning-input>
+                                    </div>
+                                </div>
+                            </template> 
+                        </div>
+                        <div class="slds-col slds-grid slds-size_12-of-12">
+                            <div class="slds-col slds-size_6-of-12 date-start">
+                                <div class="lgc-bg">
+                                    <lightning-input type="text" label="Date Start" value={project.Date_Start__c} readonly></lightning-input>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12 date-end">
+                                <div class="lgc-bg">
+                                    <lightning-input type="text" label="Date End" value={project.Date_End__c} readonly></lightning-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </template>
+
+        </template>
+
+        <!-- Use template if:true to check user's role and display list accordingly -->
+        <template if:true={SL}>
+
+            <h3 class="task-title slds-grid_vertical-align-center" slot="title">
+                <lightning-icon icon-name="standard:contact_list" size="medium" class="card-icon"></lightning-icon>
+                My Squad Lead Projects
+            </h3>
+
+            <!-- Use template for:each to load SL's projects -->
+            <template for:each={squadLead} for:item="project">
+
+                <div class="slds-grid slds-grid_align-space slds-grid_vertical-align-center container" key={project}>
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_12-of-12 name">
+                            <a onclick={handleProjectClick} data-project-id={project.Id}>{project.Name}</a>
+                        </div>
+                        <div class="slds-col slds-grid slds-size_12-of-12">
+                            <div class="slds-col slds-size_6-of-12 status">
+                                <div class="lgc-bg">
+                                    <lightning-input type="text" label="Status" value={project.Status__c} readonly></lightning-input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-grid slds-size_12-of-12">
+                            <div class="slds-col slds-size_6-of-12 date-start">
+                                <div class="lgc-bg">
+                                    <lightning-input type="text" label="Date Start" value={project.Date_Start__c} readonly></lightning-input>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12 date-end">
+                                <div class="lgc-bg">
+                                    <lightning-input type="text" label="Date End" value={project.Date_End__c} readonly></lightning-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </template>
+
+        </template>
+
+        <!-- Use template if:true to check if there's projects for this user -->
+        <template if:true={nothing}>
+            <c-camping-image></c-camping-image>
+        </template>
+
+    </lightning-card>
+</template>

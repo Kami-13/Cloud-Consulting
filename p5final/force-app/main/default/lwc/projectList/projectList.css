@@ -1,0 +1,14 @@
+.card-icon{
+    margin-right: 10px;
+}
+
+.container{
+    height: auto;
+    padding: 5px 16px;
+}
+
+
+a{
+    font-size: medium;
+    font-weight: 500;
+}

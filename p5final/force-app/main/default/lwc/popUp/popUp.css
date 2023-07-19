@@ -1,0 +1,16 @@
+.tooltip {
+    border: none;
+    position: relative;
+  }
+
+.modal-body{
+  font-size: medium;
+  /* margin: 0 40px; */
+  text-align: center;
+}
+
+.modal-dates{
+  font-size: medium;
+  /* margin: 0 200px; */
+  text-align: center;
+}

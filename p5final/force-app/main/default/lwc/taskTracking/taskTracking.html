@@ -1,0 +1,25 @@
+<template>
+    <lightning-card>
+
+        <!-- tasks refresh button -->
+        <lightning-button-icon icon-name="utility:refresh" size="small" slot="actions" onclick={refresh} class="toolip" variant="bare"></lightning-button-icon>
+
+        <h3 class="card-title" slot="title">
+            <lightning-icon icon-name="standard:task" size="medium" class="card-icon"></lightning-icon>
+            Task Tracking
+        </h3>
+
+        <!-- Use template if:true to load child component -->
+        <template if:true={projects}>
+            <template for:each={projects} for:item="project">
+                <c-project-card key={project.project} project={project.project} tasks={project.tasks} onrefresh={refresh}></c-project-card>
+            </template>
+        </template>
+
+        <!-- Use template if:true to display empty status image -->
+        <template if:true={image}>
+            <c-hammock-image></c-hammock-image>
+        </template>
+
+    </lightning-card>
+</template>

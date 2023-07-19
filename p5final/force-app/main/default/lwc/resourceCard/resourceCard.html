@@ -1,0 +1,20 @@
+<template>
+    <!-- lightning card for role -->
+    <lightning-card class="card">
+        <h3 class="role-title" slot="title">
+            <lightning-icon icon-name="utility:groups" size="small" class="card-icon" onclick={logInfo}></lightning-icon>
+            {role} - Total Estimated Hours {totalHours} - Allocated Hours {assignedHours}
+        </h3>
+        <div class="slds-border_bottom resource-border slds-m-vertical_x-small"></div>
+
+        <div style="height: auto">
+            <!-- Use template if:true to check for users to load -->
+            <template if:true={users}>
+                <!-- Use template for:each to load child components for users -->
+                <template for:each={users} for:item="user">
+                    <c-resource-item key={user.Id} user={user} user-dates={userDates} related-project={relatedProject}></c-resource-item>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

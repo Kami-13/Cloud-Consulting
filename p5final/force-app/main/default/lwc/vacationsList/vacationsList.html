@@ -1,0 +1,59 @@
+<template>
+    <lightning-card>
+
+        <!-- out of office refresh button --> 
+        <lightning-button-icon icon-name="utility:refresh" size="small" slot="actions" onclick={handleRefresh} class="toolip" variant="bare"></lightning-button-icon>
+
+        <!-- Use template if:true to display/hide user's out of office requests -->
+        <template if:true={requests}>
+
+            <h3 class="task-title slds-grid_vertical-align-center" slot="title">
+                <lightning-icon icon-name="standard:contact_list" size="medium" class="card-icon"></lightning-icon>
+                Out Of Office Requests
+            </h3>
+
+            <!-- starts requests list -->
+            <template for:each={requestList} for:item="request">
+
+                <div class="slds-grid slds-grid_align-space slds-grid_vertical-align-center container" key={project}>
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_12-of-12 description">
+                            <div class="lgc-bg">
+                                <lightning-input type="text" label="Description" value={request.Request_Description__c} readonly></lightning-input>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-grid slds-size_12-of-12">
+                            <div class="slds-col slds-size_6-of-12 status">
+                                <div class="lgc-bg">
+                                    <lightning-input type="text" label="Status" value={request.Request_Status__c} readonly></lightning-input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-grid slds-size_12-of-12">
+                            <div class="slds-col slds-size_6-of-12 date-start">
+                                <div class="lgc-bg">
+                                    <lightning-input type="text" label="Date Start" value={request.Request_Date_Start__c} readonly></lightning-input>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12 date-end">
+                                <div class="lgc-bg">
+                                    <lightning-input type="text" label="Date End" value={request.Request_Date_End__c} readonly></lightning-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-border_bottom request-border slds-m-vertical_x-small" key={request}></div>
+
+            </template>
+
+        </template>
+
+        <!-- Use template if:true to display empty state image -->
+        <template if:true={nothing}>
+            <c-hand-image></c-hand-image>
+        </template>
+
+    </lightning-card>
+</template>

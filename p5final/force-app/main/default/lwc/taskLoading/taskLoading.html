@@ -1,0 +1,73 @@
+<template>
+
+    <!-- Use template if:true to display/hide spinner -->
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
+    </template>
+
+    <!-- Use template if:true to check project status -->
+    <template if:true={inProgress}>
+        <lightning-card>
+
+            <!-- tasks title -->
+            <h3 class="task-title slds-grid_vertical-align-center" slot="title">
+                <lightning-icon icon-name="standard:contact_list" size="medium" class="card-icon"></lightning-icon>
+                Tasks Assignments
+            </h3>
+
+            <!-- all tasks link -->
+            <lightning-button label="All Tasks" slot="actions" onclick={navigateToTaskTab}></lightning-button>
+
+            <!-- starts tasks form -->
+            <div class="slds-grid slds-grid_align-space slds-grid_vertical-align-center container">
+                <div class="slds-col slds-size_5-of-12 resource">
+                    <lightning-combobox
+                        name="progress"
+                        label="Resource"
+                        value={value}
+                        placeholder="Select Resource"
+                        options={resCombo}
+                        onchange={handleResource}></lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_6-of-12 task">
+                    <lightning-input type="text" label="Task" placeholder="type here..." onchange={handleTask} class="clearClass"></lightning-input>
+                </div>
+            </div>
+            <div class="slds-grid slds-grid_align-space slds-grid_vertical-align-center container">
+                <div class="slds-col slds-size_12-of-12 description">
+                    <lightning-input type="text" label="Task description" placeholder="type here..." onchange={handleDescription} class="clearClass"></lightning-input>
+                </div>
+            </div>
+            <div class="slds-grid slds-grid_align-space slds-grid_vertical-align-center container">
+                <div class="slds-col slds-size_5-of-12 picker-container">
+                    <div class="slds-grid slds-grid_align-space slds-grid_vertical-align-center">
+                        <div class="slds-col slds-size_6-of-12 picker">
+                            <lightning-input type="date" date-style="short" label="Date From" min={minDate} max={maxDate} onchange={handleFrom} class="picker clearClass"></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12 picker">
+                            <lightning-input type="date" date-style="short" label="Date To" min={minDate} max={maxDate} onchange={handleTo} class="picker clearClass"></lightning-input>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_2-of-12 hours">
+                    <lightning-input type="text" label="Hours" value={hours} class="clearClass" readonly></lightning-input>
+                </div>
+                <div class="slds-col slds-size_4-of-12 status">
+                    <lightning-input type="text" label="Status" value="Not Started" readonly></lightning-input>
+                </div>
+            </div> 
+
+            <!-- submit button -->
+            <div slot="footer">
+                <lightning-button variant="brand" label="Assign" title="Assign" icon-name="utility:add" class="slds-m-left_x-small" onclick={handleSubmit}></lightning-button>
+            </div>
+        
+        </lightning-card>
+    </template>
+
+    <!-- Use template if:true to check project status -->
+    <template if:true={notProgress}>
+        <c-landscape-image></c-landscape-image>
+    </template>
+
+</template>
